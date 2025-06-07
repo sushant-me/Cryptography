@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Devanagari Vault</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Noto+Sans+Devanagari:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="logo">
+          <span class="devanagari">देवनागरी</span>
+          <span class="english">VAULT</span>
+        </div>
+        <div class="tagline">Ancient Script • Modern Security</div>
+      </header>
+
+      <div class="security-status">
+        <div class="status-indicator" id="statusIndicator"></div>
+        <span id="seedDisplay"></span>
+        <div class="status-tooltip">
+          Encryption mapping changes every 2 minutes
+        </div>
+      </div>
+
+      <div class="app-container">
+        <div class="card encrypt-card">
+          <div class="card-header">
+            <h2><i class="fas fa-lock icon"></i> Encrypt Message</h2>
+            <div class="card-decoration"></div>
+          </div>
+          <textarea
+            id="originalMessage"
+            placeholder="Type your secret message here..."
+          ></textarea>
+          <button id="encryptBtn" class="primary-btn">
+            <i class="fas fa-key btn-icon"></i> Encrypt Message
+          </button>
+        </div>
+
+        <div class="card result-card">
+          <div class="card-header">
+            <h2><i class="fas fa-envelope icon"></i> Encrypted Message</h2>
+            <div class="card-decoration"></div>
+          </div>
+          <div
+            id="encryptedMessage"
+            class="message-output devanagari-font"
+          ></div>
+          <button id="copyEncrypted" class="secondary-btn">
+            <i class="far fa-copy btn-icon"></i> Copy Encrypted
+          </button>
+        </div>
+
+        <div class="card decrypt-card">
+          <div class="card-header">
+            <h2><i class="fas fa-unlock icon"></i> Decrypt Message</h2>
+            <div class="card-decoration"></div>
+          </div>
+          <textarea
+            id="encryptedInput"
+            placeholder="Paste encrypted message here..."
+            class="devanagari-font"
+          ></textarea>
+          <button id="decryptBtn" class="primary-btn">
+            <i class="fas fa-key btn-icon"></i> Decrypt Message
+          </button>
+        </div>
+
+        <div class="card result-card">
+          <div class="card-header">
+            <h2><i class="fas fa-scroll icon"></i> Decrypted Message</h2>
+            <div class="card-decoration"></div>
+          </div>
+          <div id="decryptedMessage" class="message-output"></div>
+          <button id="copyDecrypted" class="secondary-btn">
+            <i class="far fa-copy btn-icon"></i> Copy Decrypted
+          </button>
+        </div>
+      </div>
+
+      <footer>
+        <div class="footer-decoration"></div>
+        <p>
+          Secured with rotating Devanagari cryptography • Seed changes every 2
+          minutes
+        </p>
+      </footer>
+    </div>
+
+    <div class="floating-decoration"></div>
+    <div class="floating-decoration-2"></div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
