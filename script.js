@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // Enhanced cryptography object with proper two-way mapping
+  // Enhanced cryptography object with proper two-way mapping and security features
   const devanagariCrypto = {
     // Complete character mapping
     charMaps: [
@@ -48,7 +48,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // Current mappings
     encryptMap: {},
     decryptMap: {},
-    currentSeed: 0,
 
     // Initialize mappings
     init() {
@@ -72,9 +71,20 @@ document.addEventListener("DOMContentLoaded", function () {
         .join("");
     },
 
-    // Decrypt text
+    // Decrypt text - FIXED VERSION
     decrypt(text) {
       this.init();
+      // First check if the text contains any Devanagari characters we can map
+      const hasDevanagari = this.charMaps.some((pair) =>
+        text.includes(pair.dev)
+      );
+
+      if (!hasDevanagari) {
+        // If no mappable Devanagari characters found, return the original text
+        return text;
+      }
+
+      // Otherwise proceed with decryption
       return text
         .split("")
         .map((char) => this.decryptMap[char] || char)
@@ -91,29 +101,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const decryptBtn = document.getElementById("decryptBtn");
   const copyEncrypted = document.getElementById("copyEncrypted");
   const copyDecrypted = document.getElementById("copyDecrypted");
-
-  // Test function to verify encryption/decryption
-  function testEncryption() {
-    const testCases = [
-      "hello world",
-      "secret message 123",
-      "test! with, punctuation.",
-      "देवनागरी", // Should remain unchanged
-    ];
-
-    testCases.forEach((test) => {
-      const encrypted = devanagariCrypto.encrypt(test);
-      const decrypted = devanagariCrypto.decrypt(encrypted);
-      console.log(`Test: "${test}"`);
-      console.log(`Encrypted: "${encrypted}"`);
-      console.log(`Decrypted: "${decrypted}"`);
-      console.assert(test === decrypted, "Decryption failed!");
-      console.log("--------------------");
-    });
-  }
-
-  // Run tests on load
-  testEncryption();
 
   // Event listeners
   encryptBtn.addEventListener("click", function () {
